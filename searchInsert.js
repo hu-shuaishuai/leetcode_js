@@ -16,33 +16,31 @@ var searchInsert1 = function(nums, target) {
     return nums.indexOf(target);
   } else {
     var newNums = nums.concat(target);
-    var arr = newNums.sort((a, b) => a -b);
+    var arr = newNums.sort((a, b) => a - b);
     return arr.indexOf(target);
   }
 };
 
-
 var searchInsert2 = function(nums, target) {
-    if (nums == null) {
-        return -1;
+  if (nums == null) {
+    return -1;
+  }
+  var left = 0;
+  var right = nums.length - 1;
+  while (left <= right) {
+    mid = Math.floor((left + right) / 2);
+    if (nums[mid] === target) {
+      return mid;
+    } else if (target < nums[mid]) {
+      right = right - 1;
+    } else {
+      left = mid + 1;
     }
-    var left = 0
-    var right = nums.length - 1;
-    while(left <= right) {
-        mid = Math.floor((left + right)/2);
-        if (nums[mid] === target) {
-            return mid
-        }else if (target < nums[mid]) {
-            right = right - 1;
-        } else {
-            left = mid + 1
-        }
-    }
-    return left
-}
+  }
+  return left;
+};
 
-var nums = [3,5,7,9,10];
+var nums = [3, 5, 7, 9, 10];
 var target = 8;
 
-console.log("---------searchInsert2", searchInsert2(nums, target))
-
+console.log("---------searchInsert2", searchInsert2(nums, target));
